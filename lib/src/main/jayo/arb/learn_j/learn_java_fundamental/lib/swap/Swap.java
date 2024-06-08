@@ -1,5 +1,7 @@
 package jayo.arb.learn_j.learn_java_fundamental.lib.swap;
 
+import jayo.arb.learn_j.learn_java_fundamental.lib.Data;
+
 public class Swap {
     /**
      * Works on any java data types

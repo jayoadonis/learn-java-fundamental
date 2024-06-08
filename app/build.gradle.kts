@@ -10,12 +10,18 @@ project.group = "jayo.arb.learn_j"
 
 val ROOT_PROJECT_NAME = project.rootProject.name
     .replace("-", "_")
+val MODULE_NAME = "${project.group}.${ROOT_PROJECT_NAME}.${project.name}";
 
+project.java {
+    this.modularity.inferModulePath.set(true);
+    this.sourceCompatibility = JavaVersion.VERSION_1_9;
+    this.targetCompatibility = JavaVersion.VERSION_11;
+}
 project.application {
-
     this.mainClass.set(
-        "${project.group}.${ROOT_PROJECT_NAME}.${project.name}.MainExe"
+        "${MODULE_NAME}.MainExe"
     );
+    this.mainModule.set( MODULE_NAME )
 }
 
 project.dependencies {
