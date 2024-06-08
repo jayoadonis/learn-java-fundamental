@@ -1,4 +1,4 @@
-package jayo.arb.learn_j.learn_java_fundamental.lib.swap;
+package jayo.arb.learn_j.learn_java_fundamental_lib;
 
 public class Data<T extends Comparable<? super T>> {
     public Data( T x, T y ) {

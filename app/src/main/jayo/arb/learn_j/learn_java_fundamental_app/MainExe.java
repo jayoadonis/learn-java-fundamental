@@ -1,6 +1,6 @@
-package jayo.arb.learn_j.learn_java_fundamental.app;
+package jayo.arb.learn_j.learn_java_fundamental_app;
 
-import jayo.arb.learn_j.learn_java_fundamental.lib.swap.Swap;
+import jayo.arb.learn_j.learn_java_fundamental_lib.swap.Swap;
 
 public class MainExe {
 

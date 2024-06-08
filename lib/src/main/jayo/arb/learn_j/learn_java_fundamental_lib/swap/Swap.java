@@ -1,4 +1,6 @@
-package jayo.arb.learn_j.learn_java_fundamental.lib.swap;
+package jayo.arb.learn_j.learn_java_fundamental_lib.swap;
+
+import jayo.arb.learn_j.learn_java_fundamental_lib.Data;
 
 public class Swap {
     /**
