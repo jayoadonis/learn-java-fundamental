@@ -1,9 +1,10 @@
 
-
 settings.rootProject.name = "learn-java-fundamental"
-println(String.format("Gradle Version: %s", settings.gradle.gradleVersion ))
+println(String.format("Gradle Version: %s, %s", settings.gradle.gradleVersion,
+    settings.rootProject.name ));
 
-settings.include("app");
+settings.include( ":app");
+settings.include( ":lib")
 
 final lateinit var JAVA_PLUGIN_IDS: Set<String>;
 
@@ -19,7 +20,6 @@ settings.gradle.settingsEvaluated {
         "groove"
     ).map{ it.lowercase() }.toSet();
 }
-
 
 settings.gradle.projectsEvaluated {
 

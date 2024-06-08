@@ -17,3 +17,7 @@ project.application {
         "${project.group}.${ROOT_PROJECT_NAME}.${project.name}.MainExe"
     );
 }
+
+project.dependencies {
+    this.implementation( project(":lib") );
+}
