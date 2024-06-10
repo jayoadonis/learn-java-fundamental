@@ -9,6 +9,7 @@ project.version = "0.0.1"
 project.group = "jayo.arb.learn-j"
 
 
+
 val CHAR_PKG_SPACE: String = "_"; //REM: use for normalized and denormalized function.
 val PROJECT_GROUP: String = project.normalized_as_pkg( project.group.toString() );
 val ROOT_PROJECT_NAME: String = project.normalized_as_pkg( project.rootProject.name );

@@ -51,4 +51,5 @@ project.tasks.withType<Zip>() {
 }
 project.tasks.withType<Jar>() {
     this.archiveBaseName.set( PROJECT_COMPOUND_NAME );
+
 }
