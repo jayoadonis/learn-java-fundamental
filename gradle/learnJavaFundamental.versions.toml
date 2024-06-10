@@ -1,0 +1,15 @@
+[metadata]
+
+[versions]
+app="0.0.1"
+lib="0.0.1"
+
+[libraries]
+[libraries.app]
+    group="jayo.arb.learn-j"
+    name="learn-java-fundamental-app"
+    version.ref="app"
+[libraries.lib]
+    group="jayo.arb-learn-j"
+    name="learn-java-fundamental-lib"
+    version.ref="lib"

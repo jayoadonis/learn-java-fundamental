@@ -1,17 +1,44 @@
-import org.gradle.internal.impldep.org.joda.time.DateTimeZone
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.TimeZone
+
+@file:Suppress("UnstableApiUsage")
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 settings.rootProject.name = "learn-java-fundamental"
 println(String.format("Gradle Version: %s, %s", settings.gradle.gradleVersion,
     settings.rootProject.name ));
 
 settings.include( ":app");
-settings.include( ":lib")
+settings.include( ":lib");
 
 final lateinit var JAVA_PLUGIN_IDS: Set<String>;
 final lateinit var PROJECT_GROUP: String;
+
+
+pluginManagement {
+    this.repositories {
+        this.mavenCentral();
+        this.gradlePluginPortal();
+    }
+    this.plugins {
+        //REM: TODO-HERE;
+    }
+}
+
+settings.dependencyResolutionManagement{
+    this.repositories {
+        this.mavenCentral();
+    }
+    this.versionCatalogs {
+        this.register("learnJavaFundamental") {
+            this.from( files( "./gradle/learnJavaFundamental.versions.toml" ) );
+        }
+        this.register("testLib") {
+            this.from( files( "./gradle/test.versions.toml" ) );
+        }
+    }
+}
 
 settings.gradle.settingsEvaluated {
     JAVA_PLUGIN_IDS = setOf(

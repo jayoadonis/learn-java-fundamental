@@ -1,11 +1,15 @@
 
+
 plugins {
     java
     `java-library`
 }
 
-project.version = "0.0.1"
-project.group = "arb.jayo.learn_j"
+
+project.version = learnJavaFundamental.lib.get()
+    .version?.takeIf{ it.isNotBlank() }!!;
+project.group = learnJavaFundamental.lib.get()
+    .group?.takeIf{ it.isNotBlank() }!!;
 
 val CHAR_PKG_SPACE: String = "_"; //REM: use for normalized and denormalized function.
 val PROJECT_GROUP: String = project.normalized_as_pkg( project.group.toString() );
@@ -41,6 +45,12 @@ project.repositories {
 
 project.dependencies {
     this.implementation("org.jetbrains:annotations:24.1.0");
+    this.testImplementation( testLib.junit.jupiter.api );
+    this.testRuntimeOnly( testLib.junit.jupiter.engine );
+}
+
+project.tasks.test {
+    this.useJUnitPlatform();
 }
 
 project.tasks.withType<Tar>() {

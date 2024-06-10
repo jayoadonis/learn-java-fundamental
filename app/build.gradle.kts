@@ -5,9 +5,12 @@ plugins {
     application
 }
 
-project.version = "0.0.1"
-project.group = "jayo.arb.learn-j"
-
+project.version = learnJavaFundamental.app.get()
+    .version?.takeIf{ it.isNotBlank() }!!
+//    ?: "<0.0.0-default>"
+project.group = learnJavaFundamental.app.get()
+    .group?.takeIf{ it.isNotBlank() }!!
+//    ?: "<jayo.arb.default>"
 
 
 val CHAR_PKG_SPACE: String = "_"; //REM: use for normalized and denormalized function.
