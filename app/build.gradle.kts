@@ -43,6 +43,9 @@ project.application {
     this.mainModule.set( MODULE_NAME )
 }
 
+project.repositories {
+    this.mavenCentral();
+}
 project.dependencies {
     this.implementation( project(":lib") );
 }

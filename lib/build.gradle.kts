@@ -35,8 +35,12 @@ project.java {
     this.targetCompatibility = JavaVersion.VERSION_11;
 }
 
-project.dependencies {
+project.repositories {
+    this.mavenCentral();
+}
 
+project.dependencies {
+    this.implementation("org.jetbrains:annotations:24.1.0");
 }
 
 project.tasks.withType<Tar>() {
