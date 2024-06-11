@@ -39,7 +39,10 @@ public class Color implements Comparable<Color>, Cloneable{
         try {
             Color clone = (Color) super.clone();
             //REM: TODO-HERE; copy mutable state here, so the clone can't change the internals of the original
-
+//            clone.red = this.red;
+//            clone.green = this.green;
+//            clone.blue = this.blue;
+//            clone.alpha = this.alpha;
             return clone;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError(e);

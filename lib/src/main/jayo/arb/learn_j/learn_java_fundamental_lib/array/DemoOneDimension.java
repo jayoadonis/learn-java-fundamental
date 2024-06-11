@@ -1,11 +1,13 @@
 package jayo.arb.learn_j.learn_java_fundamental_lib.array;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class DemoOneDimension<T extends Comparable<? super T> & Cloneable > extends OneDimension<T> {
+public class DemoOneDimension<T extends Comparable<? super T> & Cloneable > extends OneDimension<T> implements Comparable<DemoOneDimension<T>> {
 
     public DemoOneDimension( T[] oneDimensionArray ) {
         this.oneDimensionArray = oneDimensionArray;
@@ -18,6 +20,31 @@ public class DemoOneDimension<T extends Comparable<? super T> & Cloneable > exte
             this.oneDimensionArray[i] = otherDemoOneDimension.oneDimensionArray[i];
         this.capacity = this.oneDimensionArray.length;
         this.size = otherDemoOneDimension.oneDimensionArray.length;
+    }
+
+    @Override
+    public int size() {
+        return this.size;
+    }
+    /**
+     * Order matter.
+     *
+     * @param otherDemoOneDimension
+     * @return
+     */
+    @Override
+    public int compareTo( @NotNull DemoOneDimension<T> otherDemoOneDimension ) {
+        int thisLen = this.size;
+        int otherLen = otherDemoOneDimension.size;
+        if( thisLen < otherLen )
+            return -1; //REM: LHS is less than RHS
+        if( thisLen > otherLen )
+            return 1; //REM: LHS is greater than RSH
+        for( int i = 0; i < thisLen; ++i ) {
+            if( this.oneDimensionArray[i] != otherDemoOneDimension.oneDimensionArray[i] )
+                return -2; //REM: Same len but different content (order matters).
+        }
+        return 0;
     }
     @Override
     public List<T> getOneDimension() {

@@ -5,4 +5,5 @@ import java.util.List;
 public abstract class OneDimension<T extends Comparable<? super T>> {
 
     public abstract List<T> getOneDimension();
+    public abstract int size();
 }

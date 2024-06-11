@@ -86,12 +86,20 @@ settings.gradle.projectsEvaluated {
             }
 
             this.project.tasks.withType<Jar>() {
-                this.manifest.attributes["whoami"] = "jayo.arb";
+                this.manifest.attributes["whoami"] = "jayo.arb (https://github/jayoadonis)";
+                this.manifest.attributes["Author"] = this.manifest.attributes["Author"]
+                    .takeIf{ it.toString().isNotBlank() }
+                    ?: project.providers.gradleProperty("project.author")
+                        .orNull?.takeIf{ it.isNotBlank() }
+                    ?: "A. R. B. Jayo";
                 this.manifest {
                     attributes["Name"] = attributes["Name"]
                         .takeIf{ it.toString().isNotBlank() }
                         ?: archiveFileName;
-                    attributes["Build-By"] = attributes["Built-By"]
+                    attributes["Application-Name"] = attributes["Application-Name"]
+                        .takeIf{ it.toString().isNotBlank() }
+                        ?: archiveBaseName;
+                    attributes["Built-By"] = attributes["Built-By"]
                         .takeIf{ it.toString().isNotBlank() }
                         ?: (
                                 project.providers.gradleProperty("project.group.name")
@@ -103,6 +111,8 @@ settings.gradle.projectsEvaluated {
                         ?: SimpleDateFormat("yyyy-MM-dd h:mm:ss-aXXX").format(Date());
                     attributes["Description"] = attributes["Description"]
                         .takeIf{ it.toString().isNotBlank() }
+                        ?: project.providers.gradleProperty( "project.global.description" )
+                            .orNull?.takeIf{ it.isNotBlank() }
                         ?: "N/a"
                     attributes["Implementation-Vendor"] = attributes["Implementation-Vendor"]
                         .takeIf{ it.toString().isNotBlank() }

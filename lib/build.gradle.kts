@@ -19,18 +19,18 @@ val MODULE_NAME = "${PROJECT_GROUP}.${ROOT_PROJECT_NAME}_${PROJECT_NAME}";
 val PROJECT_COMPOUND_NAME: String = project.denormalized_from_pkg("${ROOT_PROJECT_NAME}-${PROJECT_NAME}");
 
 //REM: Use for specialized format.
-private fun Project.normalized_as_pkg( value: String ): String {
+private fun Project.normalized_as_pkg( value: String, pkgSpace: String = CHAR_PKG_SPACE ): String {
     val REGEX_PKG_SPACE_COMPILE: Regex = Regex("[\\/ *+-]+");
     val REGEX_TRIM_COMPILE: Regex = Regex("(^[ ._]+)|([ ._]+$)");
 
-    return value.replace( REGEX_PKG_SPACE_COMPILE, CHAR_PKG_SPACE )
+    return value.replace( REGEX_PKG_SPACE_COMPILE, pkgSpace )
         .replace( REGEX_TRIM_COMPILE, "" )
         .lowercase();
 }
 
 //REM: Use for specialized format.
-private fun Project.denormalized_from_pkg( value: String ): String {
-    return value.replace( Regex( CHAR_PKG_SPACE ), "-");
+private fun Project.denormalized_from_pkg( value: String, pkgSpace: String = CHAR_PKG_SPACE ): String {
+    return value.replace( Regex( pkgSpace ), "-");
 }
 
 project.java {
