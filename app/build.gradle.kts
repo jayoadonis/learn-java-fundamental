@@ -54,6 +54,16 @@ project.dependencies {
     this.implementation( project(":lib") );
 }
 
+project.tasks.test {
+    this.useJUnitPlatform();
+    //REM: TODO-HERE[0x0]: We need it to explicitly init-disable built-in assertions
+    //REM: TODO-HERE[0x0]: ~ the reason is we want to passed it and handled it by the '/settings.gradle.kts' and
+    //REM: TODO-HERE[0x0]: ~ its 'settings.gradle.projectsEvaluated{ ... }'.
+    //REM: TODO-HERE[0x0]: ~ However I don't know why it is '-ea' by default and by whom?
+    //REM: TODO-HERE[0x0]: ~ Maybe it is mandatory to be at '-ea', because, it is a TEST config.
+    this.jvmArgs = listOf("-da");
+}
+
 project.tasks.withType<Tar>() {
     this.archiveBaseName.set( PROJECT_COMPOUND_NAME );
 }

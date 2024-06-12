@@ -6,5 +6,9 @@ public class Red extends Color {
     }
     public Red( float value ) {
         super( value, 0.0f, 0.0f );
+
+        //REM: TODO-HERE: bind it with the gradle build tool.
+        //REM: TODO-HERE: ~ this is a sample, it can be remove at any time.
+        assert( false ) : "User Error.....";
     }
 }
