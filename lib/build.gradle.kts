@@ -17,7 +17,7 @@ val CHAR_PKG_SPACE: String = "_"; //REM: use for normalized and denormalized fun
 val PROJECT_GROUP: String = project.normalized_as_pkg( project.group.toString() );
 val ROOT_PROJECT_NAME: String = project.normalized_as_pkg( project.rootProject.name );
 val PROJECT_NAME: String = project.normalized_as_pkg( project.name );
-val MODULE_NAME = "${PROJECT_GROUP}.${ROOT_PROJECT_NAME}_${PROJECT_NAME}";
+val MODULE_NAME: String = "${PROJECT_GROUP}.${ROOT_PROJECT_NAME}_${PROJECT_NAME}";
 val PROJECT_COMPOUND_NAME: String = project.denormalized_from_pkg("${ROOT_PROJECT_NAME}-${PROJECT_NAME}");
 
 //REM: Use for specialized format.
@@ -53,9 +53,9 @@ project.dependencies {
 
 project.publishing {
     this.repositories {
-        this.maven {
-            this.name = "local";
-        }
+//        this.maven {
+////            this.name = "local";
+//        }
     }
 }
 project.tasks.test {

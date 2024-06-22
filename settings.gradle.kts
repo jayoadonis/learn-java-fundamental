@@ -1,6 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import org.gradle.internal.impldep.org.apache.commons.lang.mutable.Mutable
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -58,7 +57,10 @@ settings.gradle.settingsEvaluated {
         "kotlin",
         "groove"
     ).map { it.lowercase() }.toSet();
-    PROJECT_GROUP = "jayo.arb.learn-j";
+    PROJECT_GROUP = settings.providers
+        .gradleProperty("project.group.name")
+        .orNull?.takeIf{ it.isNotBlank() }
+        ?: "jayo.arb.learn-j"
 }
 
 settings.gradle.beforeProject {
@@ -122,8 +124,8 @@ settings.gradle.projectsEvaluated {
                         if (this.findByName(PROJECT_COMPOUND_NAME.get()) == null) {
                             this.register<MavenPublication>(PROJECT_COMPOUND_NAME.get()) {
                                 this.from(components["java"]);
-                                this.groupId = this.groupId ?: PROJECT_GROUP;
-                                this.artifactId = this.artifactId ?: PROJECT_COMPOUND_NAME.get();
+                                this.groupId = PROJECT_GROUP;
+                                this.artifactId = PROJECT_COMPOUND_NAME.get();
                                 this.version = project.version.toString();
                                 this.pom {
                                     this.name = PROJECT_COMPOUND_NAME;
@@ -133,7 +135,7 @@ settings.gradle.projectsEvaluated {
                                             this.id = "jayoadonis";
                                             this.name = "A. R. B. Jayo";
                                             this.email = "jayo.adonisraphael@gmail.com";
-                                            this.url = "jayo.arb"
+                                            this.url =  PROJECT_GROUP.split(".").reversed().joinToString(".");
                                         }
                                     }
                                     this.licenses {
@@ -186,7 +188,7 @@ settings.gradle.projectsEvaluated {
                             val IS_EA_EXEC_JAVA = project.findProperty("gradle.is_ea.java_exec")
                                 ?.toString()?.toBoolean() ?: false;
                             if( IS_EA_EXEC_JAVA ) {
-                                println("::: Enabling Built-in Assertions with ${this.name}")
+                                println("::: Enabling Built-in Assertions at ${this.name}")
                                 this.jvmArgs = listOf("-ea")
                             }
                         }
@@ -194,12 +196,10 @@ settings.gradle.projectsEvaluated {
                             val IS_EA_TEST_JAVA = project.findProperty("gradle.is_ea.java_test")
                                 ?.toString()?.toBoolean() ?: false;
                             if( IS_EA_TEST_JAVA ) {
-                                println("::: Enabling Built-in Assertions with ${this.name}, ${project.name}")
+                                println("::: Enabling Built-in Assertions at ${this.name}, ${project.name}")
                                 this.jvmArgs = listOf("-ea")
                             } else {
-                                //REM: TODO-HERE[0x1]: Why it did not work?
-                                //REM: TODO-HERE[0x1]: ~ Why work only in the 'submodule or subproject' build script level
-                                println("::: Disabling Built-in Assertions with ${this.name}, ${project.name}")
+                                println("::: Disabling Built-in Assertions at ${this.name}, ${project.name}")
                                 this.jvmArgs = listOf("-da")
                             }
                         }
@@ -211,14 +211,14 @@ settings.gradle.projectsEvaluated {
                             when( this.name ) {
                                 "compileTestJava" -> {
                                     if( IS_EA_COMPILE_TEST_JAVA ) {
-                                        println("::: Enabling Built-in Assertions with ${this.name} (forked)")
+                                        println("::: Enabling Built-in Assertions at ${this.name} (forked)")
                                         this.options.isFork = true
                                         this.options.forkOptions.jvmArgs = listOf("-ea")
                                     }
                                 }
                                 "compileJava" -> {
                                     if( IS_EA_COMPILE_JAVA ) {
-                                        println("::: Enabling Built-in Assertions with ${this.name} (forked)")
+                                        println("::: Enabling Built-in Assertions at ${this.name} (forked)")
                                         this.options.isFork = true
                                         this.options.forkOptions.jvmArgs = listOf("-ea")
                                     }

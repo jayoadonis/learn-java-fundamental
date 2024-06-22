@@ -34,6 +34,7 @@
 
 ## GRADLE
 **/.gradle/
+
 !**/gradle/gradle-wrapper.jar
 !**/gradle/gradle-wrapper.properties
 ## END: GRADLE
@@ -48,6 +49,7 @@
 **/secret.properties
 **/private.properties
 **/.env
+**/local.properties
 ## END: PRIVATE & SECRETS
 
 

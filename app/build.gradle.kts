@@ -3,6 +3,8 @@
 plugins {
     java
     application
+    `maven-publish`
+    signing
 }
 
 project.version = learnJavaFundamental.app.get()

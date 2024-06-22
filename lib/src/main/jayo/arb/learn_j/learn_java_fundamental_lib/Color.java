@@ -35,7 +35,7 @@ public class Color implements Comparable<Color>, Cloneable{
         );
     }
     @Override
-    public Color clone() /*throws CloneNotSupportedException*/ {
+    public final Color clone() /*throws CloneNotSupportedException*/ {
         try {
             Color clone = (Color) super.clone();
             //REM: TODO-HERE; copy mutable state here, so the clone can't change the internals of the original
@@ -47,6 +47,18 @@ public class Color implements Comparable<Color>, Cloneable{
         } catch (CloneNotSupportedException e) {
             throw new AssertionError(e);
         }
+    }
+    public float getRed() {
+        return this.red;
+    }
+    public float getGreen() {
+        return this.green;
+    }
+    public float getBlue() {
+        return this.blue;
+    }
+    public float getAlpha() {
+        return this.alpha;
     }
 
     @Override
